@@ -5,15 +5,16 @@ function getDogImage(breed) {
     .then(response => response.json())
     .then(responseJson =>
       displayResults(responseJson))
-    .catch(error => alert('Well that is not right. Try again later.'));
+    .catch(error => alert('Well... something broke. Try again later.'));
 }
 
 function displayResults(responseJson) {
   console.log(responseJson);
 
-  if (responseJson.message == "Breed not found") {
+  if (responseJson.message.includes ("Breed not found")) {
     alert('That breed was not found, please try another.');
     $('.results').append(`<h2>Breed not found!</h2>`);
+    $('.results').removeClass('hidden');
   } 
   else {
     //replace the existing image with the new one
